@@ -30,6 +30,11 @@
           "target": "components/crown-ui/core.tsx"
         },
         {
+          "path": "src/motion-preference.ts",
+          "type": "registry:file",
+          "target": "components/crown-ui/motion-preference.ts"
+        },
+        {
           "path": "src/controls.tsx",
           "type": "registry:file",
           "target": "components/crown-ui/controls.tsx"

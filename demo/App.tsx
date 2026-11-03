@@ -7,15 +7,14 @@ import { Examples } from "./screens/Examples";
 import { TypographyLab } from "./TypographyLab";
 import { IllustrationsPage } from "./IllustrationsPage";
 import { MotionPage } from "./MotionPage";
+import { useMotionPreference } from "./useMotionPreference";
 
 export function App() {
   const route = useRoute();
   const [search, setSearch] = useState(false);
   const [query, setQuery] = useState("");
   const [mobileNav, setMobileNav] = useState(false);
-  const [reduced, setReduced] = useState(
-    () => localStorage.getItem("crown-reduced-motion") === "true",
-  );
+  const { preference, setPreference, reduced, systemReduced } = useMotionPreference();
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
@@ -26,10 +25,6 @@ export function App() {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
-  useEffect(() => {
-    document.documentElement.dataset.reducedMotion = String(reduced);
-    localStorage.setItem("crown-reduced-motion", String(reduced));
-  }, [reduced]);
   useEffect(() => {
     setMobileNav(false);
   }, [route]);
@@ -132,12 +127,13 @@ export function App() {
           <span className="version-label">v0.1.0</span>
           <button
             className={`motion-toggle plain-icon ${reduced ? "muted" : ""}`}
-            aria-label={reduced ? "启用界面动效" : "减少界面动效"}
-            aria-pressed={reduced}
-            title={reduced ? "启用动效" : "减少动效"}
-            onClick={() => setReduced(!reduced)}
+            aria-label={reduced ? "启用完整动效" : "减少界面动效"}
+            aria-pressed={!reduced}
+            title={reduced ? "启用完整动效" : "减少界面动效"}
+            onClick={() => setPreference(reduced ? "full" : "reduced")}
           >
             <Icon name="spark" />
+            <span>动效{reduced ? "关" : "开"}</span>
           </button>
         </div>
       </header>
@@ -210,12 +206,12 @@ export function App() {
         ) : route === "/illustrations" ? (
           <IllustrationsPage />
         ) : route === "/motion" ? (
-          <MotionPage />
+          <MotionPage preference={preference} reduced={reduced} systemReduced={systemReduced} onPreferenceChange={setPreference} />
         ) : route.startsWith("/examples") ? (
           <Examples
             screen={route.split("/")[2] || "start"}
             reduced={reduced}
-            onReducedChange={setReduced}
+            onReducedChange={(value) => setPreference(value ? "reduced" : "full")}
           />
         ) : route.startsWith("/components/") &&
           catalog.some((c) => c.id === route.split("/")[2]) ? (

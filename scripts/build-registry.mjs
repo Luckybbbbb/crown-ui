@@ -6,6 +6,7 @@ const names = [
   "index.ts",
   "icons.tsx",
   "core.tsx",
+  "motion-preference.ts",
   "controls.tsx",
   "feedback.tsx",
   "style.css",

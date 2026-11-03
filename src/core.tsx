@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { Icon, type IconName } from "./icons";
+import { useReducedMotion } from "./motion-preference";
 import {
   GameIllustration,
   illustrations,
@@ -410,6 +411,7 @@ export function Chest({
   className?: string;
 }) {
   const active = state ?? (open ? "opened" : "idle");
+  const reduce = useReducedMotion();
   const closedName = `chest-${rarity}` as IllustrationName;
   const openName = `chest-${rarity}-open` as IllustrationName;
   const speed = Number.isFinite(duration) ? Math.max(900, duration) : 2200;
@@ -417,9 +419,6 @@ export function Chest({
   completeRef.current = onOpenComplete;
   useEffect(() => {
     if (active !== "opening" || !completeRef.current) return;
-    const reduce =
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      document.documentElement.dataset.reducedMotion === "true";
     const delay = reduce ? 20 : speed;
     const timer =
       loop && !reduce
@@ -429,7 +428,7 @@ export function Chest({
       clearTimeout(timer);
       clearInterval(timer);
     };
-  }, [active, speed, loop]);
+  }, [active, speed, loop, reduce]);
   const label = {
     common: "普通木箱",
     rare: "稀有皇家宝箱",

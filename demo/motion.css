@@ -1,3 +1,77 @@
+.motion-toggle.plain-icon {
+  gap: 7px;
+  min-height: 44px;
+  white-space: nowrap;
+  font-size: 20px;
+  font-weight: 900;
+}
+.motion-preference-panel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  padding: 24px;
+  margin: 28px 0;
+  background: #f5eedc;
+  border: 2px solid #c7b68d;
+  border-radius: 15px;
+  box-shadow: 0 4px #ded2b7;
+}
+.motion-preference-panel > div {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+.motion-preference-panel strong {
+  color: #326358;
+  font-size: 24px;
+}
+.motion-preference-panel p {
+  margin: 9px 0 0;
+  color: #756950;
+  font-size: 20px;
+  line-height: 1.7;
+}
+.motion-preference-panel > label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 20px;
+  min-width: 180px;
+}
+.motion-is-reduced {
+  border-color: #c29b50;
+}
+.motion-is-reduced strong {
+  color: #97621b;
+}
+@media (max-width: 760px) {
+  .motion-preference-panel {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .motion-preference-panel > div {
+    flex: none;
+  }
+  .motion-preference-panel > label {
+    min-width: 0;
+  }
+}
+@media (max-width: 480px) {
+  .site-header {
+    padding-inline: 12px;
+    gap: 8px;
+  }
+  .brand-emblem {
+    display: none;
+  }
+  .motion-toggle > svg {
+    display: none;
+  }
+  .header-actions {
+    gap: 8px;
+  }
+}
 .motion-controls {
   display: flex;
   align-items: center;

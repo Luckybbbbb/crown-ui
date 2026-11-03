@@ -876,10 +876,10 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  [class^="cr-"],
-  [class*="\ cr-"],
-  [class^="cr-"]::before,
-  [class^="cr-"]::after {
+  :root:not([data-reduced-motion="false"]) [class^="cr-"],
+  :root:not([data-reduced-motion="false"]) [class*="\ cr-"],
+  :root:not([data-reduced-motion="false"]) [class^="cr-"]::before,
+  :root:not([data-reduced-motion="false"]) [class^="cr-"]::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

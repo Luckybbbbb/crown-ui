@@ -717,15 +717,15 @@
   transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .cr-star-fill {
+  :root:not([data-reduced-motion="false"]) .cr-star-fill {
     opacity: 1 !important;
     transform: none !important;
   }
-  .cr-chest-state-opening > .cr-chest-open-image {
+  :root:not([data-reduced-motion="false"]) .cr-chest-state-opening > .cr-chest-open-image {
     opacity: 1 !important;
     transform: none !important;
   }
-  .cr-chest-state-opening > .cr-chest-closed-image {
+  :root:not([data-reduced-motion="false"]) .cr-chest-state-opening > .cr-chest-closed-image {
     opacity: 0 !important;
   }
 }

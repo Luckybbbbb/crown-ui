@@ -10,6 +10,7 @@ import {
   type ChestState,
 } from "../../src";
 import { levelNames, type BattleResult } from "./state";
+import { useReducedMotion } from "../../src/motion-preference";
 const preview: BattleResult = {
   id: "preview",
   level: 1,
@@ -23,15 +24,13 @@ const preview: BattleResult = {
 };
 function Count({ value, active = true }: { value: number; active?: boolean }) {
   const [current, setCurrent] = useState(0);
+  const reduce = useReducedMotion();
   useEffect(() => {
     if (!active) {
       setCurrent(0);
       return;
     }
-    if (
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      document.documentElement.dataset.reducedMotion === "true"
-    ) {
+    if (reduce) {
       setCurrent(value);
       return;
     }
@@ -45,7 +44,7 @@ function Count({ value, active = true }: { value: number; active?: boolean }) {
     }
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [value, active]);
+  }, [value, active, reduce]);
   return <>{current}</>;
 }
 export function ResultScreen({
@@ -62,13 +61,11 @@ export function ResultScreen({
   onRetry: () => void;
 }) {
   const run = result || preview;
+  const reduce = useReducedMotion();
   const [version, setVersion] = useState(0);
   const [chestPhase, setChestPhase] = useState<ChestState>("idle");
   const [rewardReady, setRewardReady] = useState(false);
   useEffect(() => {
-    const reduce =
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-      document.documentElement.dataset.reducedMotion === "true";
     setChestPhase(reduce && run.victory ? "opened" : "idle");
     setRewardReady(reduce || !run.victory);
     if (reduce || !run.victory) return;
@@ -78,11 +75,11 @@ export function ResultScreen({
       clearTimeout(openTimer);
       clearTimeout(rewardTimer);
     };
-  }, [version, run.id, run.victory]);
+  }, [version, run.id, run.victory, reduce]);
   return (
     <div
       className={`result-screen ${!run.victory ? "result-defeat" : ""}`}
-      key={version}
+      key={`${version}-${reduce}`}
     >
       <div className="result-radial" />
       {run.victory && (

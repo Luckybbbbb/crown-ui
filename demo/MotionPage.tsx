@@ -10,8 +10,14 @@ import {
   type ChestState,
 } from "../src";
 import { CodeBlock } from "./Docs";
+import type { MotionPreference } from "./useMotionPreference";
 type Rarity = "common" | "rare" | "epic" | "legendary";
-export function MotionPage() {
+export function MotionPage({ preference, reduced, systemReduced, onPreferenceChange }: {
+  preference: MotionPreference;
+  reduced: boolean;
+  systemReduced: boolean;
+  onPreferenceChange: (value: MotionPreference) => void;
+}) {
   const [rarity, setRarity] = useState<Rarity>("legendary");
   const [state, setState] = useState<ChestState>("idle");
   const [starCount, setStarCount] = useState(0);
@@ -24,6 +30,22 @@ export function MotionPage() {
         <h1>让每一次开启，都值得期待。</h1>
         <p>三个宝箱状态的动态预览，以及有力量感的星级结算。</p>
       </div>
+      <section className={`motion-preference-panel ${reduced ? "motion-is-reduced" : ""}`} aria-label="动效设置">
+        <div role="status">
+          <strong>{reduced ? "当前已减少动效" : "完整动效播放中"}</strong>
+          <p>{preference === "system"
+            ? systemReduced ? "系统设置要求减少动态效果，当前只展示完成状态。" : "当前跟随系统，开箱与星级打击正常播放。"
+            : reduced ? "你已选择减少动效，开箱与星级会直接展示完成状态。" : "已启用完整动效，开箱金光与星级回弹正常播放。"}</p>
+        </div>
+        <label>动效模式
+          <Select value={preference} onChange={(e) => onPreferenceChange(e.target.value as MotionPreference)}>
+            <option value="system">跟随系统</option>
+            <option value="full">完整动效</option>
+            <option value="reduced">减少动效</option>
+          </Select>
+        </label>
+        {reduced && <Button tone="gold" onClick={() => onPreferenceChange("full")}>启用完整动效</Button>}
+      </section>
       <div className="motion-controls">
         <label>
           宝箱品质
