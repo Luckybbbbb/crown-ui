@@ -1,0 +1,99 @@
+/* Included in the built style.css. Display font files load through the optional fonts entry. */
+:root,
+.crown-theme {
+  --cr-font: "Nunito", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --cr-font-display:
+    "Crown Display Latin", "Crown Display CJK", "Noto Sans SC", sans-serif;
+}
+.cr-button,
+.cr-game-card .cr-card-name,
+.cr-panel-header h3,
+.cr-dialog h2,
+.cr-level-node {
+  font-family: var(--cr-font-display);
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  font-synthesis: none;
+}
+.cr-resource-number,
+.cr-card-cost,
+.cr-progress-text {
+  font-family: "Crown Display Latin", "Nunito", sans-serif;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.cr-display-title {
+  --cr-title-front: #ffdb69;
+  --cr-title-light: #fff7c7;
+  --cr-title-low: #eeb43f;
+  --cr-title-outline: #654321;
+  --cr-title-depth: #a46c24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  gap: 0.005em;
+  font-family: var(--cr-font-display);
+  font-weight: 400 !important;
+  font-synthesis: none;
+  line-height: 1.22;
+  letter-spacing: 0.005em;
+  margin: 0;
+  color: var(--cr-title-front);
+  padding: 0.1em 0.12em 0.16em;
+}
+.cr-title-ivory {
+  --cr-title-front: #fff5d3;
+  --cr-title-light: #fffef1;
+  --cr-title-low: #f4dda3;
+  --cr-title-outline: #244767;
+  --cr-title-depth: #37688b;
+}
+.cr-title-blue {
+  --cr-title-front: #8adeff;
+  --cr-title-light: #e9fcff;
+  --cr-title-low: #49a9ec;
+  --cr-title-outline: #173f69;
+  --cr-title-depth: #246da3;
+}
+.cr-title-sm {
+  font-size: 32px;
+}
+.cr-title-md {
+  font-size: 49px;
+}
+.cr-title-lg {
+  font-size: 61px;
+}
+.cr-display-glyph {
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  color: var(--cr-title-outline);
+  -webkit-text-stroke: 0.08em var(--cr-title-outline);
+  paint-order: stroke fill;
+  text-shadow:
+    0 0.025em 0 var(--cr-title-depth),
+    0 0.05em 0 var(--cr-title-depth),
+    0 0.075em 0 var(--cr-title-depth),
+    0 0.1em 0 var(--cr-title-outline),
+    0 0.14em 0.07em #10233877;
+}
+.cr-display-glyph:after {
+  content: attr(data-letter);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    var(--cr-title-light) 10%,
+    var(--cr-title-front) 53%,
+    var(--cr-title-low) 54%,
+    var(--cr-title-front) 90%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+  filter: drop-shadow(0 -0.015em 0 var(--cr-title-light));
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "crown-ui",
+  "homepage": "https://github.com/Luckybbbbb/crown-ui#readme",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "crown-ui",
+      "type": "registry:block",
+      "title": "Crown UI",
+      "description": "Original European cartoon React UI kit: components, game cards, level nodes and feedback.",
+      "dependencies": [
+        "react@>=18",
+        "react-dom@>=18"
+      ],
+      "files": [
+        {
+          "path": "src/index.ts",
+          "type": "registry:file",
+          "target": "components/crown-ui/index.ts"
+        },
+        {
+          "path": "src/icons.tsx",
+          "type": "registry:file",
+          "target": "components/crown-ui/icons.tsx"
+        },
+        {
+          "path": "src/core.tsx",
+          "type": "registry:file",
+          "target": "components/crown-ui/core.tsx"
+        },
+        {
+          "path": "src/controls.tsx",
+          "type": "registry:file",
+          "target": "components/crown-ui/controls.tsx"
+        },
+        {
+          "path": "src/feedback.tsx",
+          "type": "registry:file",
+          "target": "components/crown-ui/feedback.tsx"
+        },
+        {
+          "path": "src/style.css",
+          "type": "registry:file",
+          "target": "components/crown-ui/style.css"
+        },
+        {
+          "path": "src/typography.css",
+          "type": "registry:file",
+          "target": "components/crown-ui/typography.css"
+        },
+        {
+          "path": "src/legibility.css",
+          "type": "registry:file",
+          "target": "components/crown-ui/legibility.css"
+        },
+        {
+          "path": "src/motion.css",
+          "type": "registry:file",
+          "target": "components/crown-ui/motion.css"
+        },
+        {
+          "path": "src/art.ts",
+          "type": "registry:file",
+          "target": "components/crown-ui/art.ts"
+        },
+        {
+          "path": "src/illustrations.tsx",
+          "type": "registry:file",
+          "target": "components/crown-ui/illustrations.tsx"
+        },
+        {
+          "path": "src/fonts.css",
+          "type": "registry:file",
+          "target": "components/crown-ui/fonts.css"
+        },
+        {
+          "path": "src/fonts/ZCOOLKuaiLe-OFL.txt",
+          "type": "registry:file",
+          "target": "components/crown-ui/fonts/ZCOOLKuaiLe-OFL.txt"
+        },
+        {
+          "path": "src/fonts/LilitaOne-OFL.txt",
+          "type": "registry:file",
+          "target": "components/crown-ui/fonts/LilitaOne-OFL.txt"
+        },
+        {
+          "path": "src/fonts/ResourceHanRounded-OFL.txt",
+          "type": "registry:file",
+          "target": "components/crown-ui/fonts/ResourceHanRounded-OFL.txt"
+        }
+      ]
+    }
+  ]
+}

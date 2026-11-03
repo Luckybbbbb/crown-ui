@@ -1,0 +1,160 @@
+{
+  "generatedWith": "built-in image_gen",
+  "reference": "public/art/royal-castle.png",
+  "deliveryPreparation": "Resize and encode only; originals retained unmodified.",
+  "assets": [
+    {
+      "id": "chest-common-open",
+      "source": "public/art/originals/chest-common-open.png",
+      "delivery": "src/assets/chest-common-open.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 59392
+    },
+    {
+      "id": "chest-common",
+      "source": "public/art/originals/chest-common.png",
+      "delivery": "src/assets/chest-common.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 56906
+    },
+    {
+      "id": "chest-epic-open",
+      "source": "public/art/originals/chest-epic-open.png",
+      "delivery": "src/assets/chest-epic-open.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 68616
+    },
+    {
+      "id": "chest-epic",
+      "source": "public/art/originals/chest-epic.png",
+      "delivery": "src/assets/chest-epic.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 69760
+    },
+    {
+      "id": "chest-legendary-open",
+      "source": "public/art/originals/chest-legendary-open.png",
+      "delivery": "src/assets/chest-legendary-open.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 66160
+    },
+    {
+      "id": "chest-legendary",
+      "source": "public/art/originals/chest-legendary.png",
+      "delivery": "src/assets/chest-legendary.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 72916
+    },
+    {
+      "id": "chest-rare-open",
+      "source": "public/art/originals/chest-rare-open.png",
+      "delivery": "src/assets/chest-rare-open.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 56584
+    },
+    {
+      "id": "chest-rare",
+      "source": "public/art/originals/chest-rare.png",
+      "delivery": "src/assets/chest-rare.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 55292
+    },
+    {
+      "id": "coin",
+      "source": "public/art/originals/coin.png",
+      "delivery": "src/assets/coin.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 55778
+    },
+    {
+      "id": "elixir",
+      "source": "public/art/originals/elixir.png",
+      "delivery": "src/assets/elixir.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 46134
+    },
+    {
+      "id": "fireball",
+      "source": "public/art/originals/fireball.png",
+      "delivery": "src/assets/fireball.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 56450
+    },
+    {
+      "id": "gem",
+      "source": "public/art/originals/gem.png",
+      "delivery": "src/assets/gem.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 42562
+    },
+    {
+      "id": "guardian",
+      "source": "public/art/originals/guardian.png",
+      "delivery": "src/assets/guardian.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 62584
+    },
+    {
+      "id": "knight",
+      "source": "public/art/originals/knight.png",
+      "delivery": "src/assets/knight.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 84566
+    },
+    {
+      "id": "ranger",
+      "source": "public/art/originals/ranger.png",
+      "delivery": "src/assets/ranger.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 81752
+    },
+    {
+      "id": "star-empty",
+      "source": "public/art/originals/star-empty.png",
+      "delivery": "src/assets/star-empty.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 26920
+    },
+    {
+      "id": "star-filled",
+      "source": "public/art/originals/star-filled.png",
+      "delivery": "src/assets/star-filled.webp",
+      "width": 512,
+      "height": 512,
+      "alpha": true,
+      "bytes": 33438
+    }
+  ]
+}

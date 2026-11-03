@@ -1,0 +1,11 @@
+node_modules/
+dist/
+demo-dist/
+artifacts/
+*.tgz
+*.log
+.env
+.env.*
+!.env.example
+public/art/originals/*-candidate.png
+src/fonts/lilita-one.woff2

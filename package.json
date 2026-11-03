@@ -1,0 +1,65 @@
+{
+  "name": "@crown-ui/react",
+  "version": "0.1.0",
+  "description": "Tactile European cartoon UI components and animated game screens for React.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Luckybbbbb",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luckybbbbb/crown-ui.git"
+  },
+  "homepage": "https://github.com/Luckybbbbb/crown-ui#readme",
+  "bugs": "https://github.com/Luckybbbbb/crown-ui/issues",
+  "main": "./dist/crown-ui.cjs",
+  "module": "./dist/crown-ui.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/crown-ui.js",
+      "require": "./dist/crown-ui.cjs"
+    },
+    "./style": "./dist/style.css",
+    "./fonts": "./dist/fonts.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "build": "vite build --config vite.lib.config.ts && tsc -p tsconfig.build.json && node scripts/copy-fonts.mjs",
+    "build:demo": "npm run build && node scripts/build-registry.mjs && node scripts/pack-demo.mjs && vite build && node scripts/copy-demo-public.mjs && node scripts/verify-demo.mjs",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test && npm run build:demo"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@fontsource/noto-sans-sc": "^5.3.1",
+    "@fontsource/nunito": "^5.2.7",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "axe-core": "^4.10.0",
+    "jsdom": "^27.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0",
+    "vitest": "^4.1.12"
+  }
+}

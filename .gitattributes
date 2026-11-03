@@ -1,0 +1,11 @@
+* text=auto eol=lf
+*.png binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.tgz binary
+*.zip binary
+# Preserve upstream license text verbatim, including existing trailing spaces.
+**/*-OFL.txt whitespace=-blank-at-eol

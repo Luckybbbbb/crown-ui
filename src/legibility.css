@@ -1,0 +1,420 @@
+/* Readability contract: visible component text is at least 20px. */
+.cr-illustration {
+  display: inline-block;
+  width: var(--cr-art-size, 80px);
+  height: var(--cr-art-size, 80px);
+  object-fit: contain;
+  vertical-align: middle;
+  flex-shrink: 0;
+  user-select: none;
+  filter: drop-shadow(0 4px 3px #132b4522);
+}
+.cr-chest-illustrated {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: var(--cr-chest-size, 160px);
+  height: var(--cr-chest-size, 160px);
+  vertical-align: middle;
+  isolation: isolate;
+  overflow: visible;
+}
+.cr-chest-illustrated > .cr-chest-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+.cr-chest-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(ellipse, #ffe99466, transparent 65%);
+  border-radius: 50%;
+  z-index: 0;
+  animation: cr-ray-glow 1.7s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.cr-chest-open > .cr-chest-image {
+  animation: cr-chest-reveal 0.5s cubic-bezier(0.2, 1.2, 0.3, 1) both;
+}
+.cr-card-portrait .cr-illustration {
+  width: 115%;
+  height: 125%;
+  max-width: none;
+  object-fit: contain;
+  transform: translateY(6%);
+  filter: drop-shadow(0 4px 2px #132c4e55);
+}
+.cr-resource-icon:has(> .cr-illustration) {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+  transform: none;
+}
+.cr-resource-icon > .cr-illustration {
+  width: 132%;
+  height: 132%;
+  max-width: none;
+  filter: drop-shadow(0 2px 1px #1a2b3e55);
+}
+@keyframes cr-chest-reveal {
+  from {
+    transform: scale(0.78) translateY(9px);
+    opacity: 0.45;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+:root,
+.crown-theme {
+  --cr-font:
+    "Nunito", "Crown Rounded SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --cr-font-display:
+    "Crown Display Latin", "Crown Rounded SC", "Noto Sans SC", sans-serif;
+  --cr-text-outline: #162535;
+  --cr-text-shadow: #0c172bcc;
+}
+.cr-button,
+.cr-panel,
+.cr-card,
+.cr-badge,
+.cr-tabs,
+.cr-dialog,
+.cr-resource,
+.cr-game-card,
+.cr-level,
+.cr-tooltip,
+.cr-toast,
+.cr-check-label,
+.cr-switch-label,
+.cr-input {
+  font-size: 20px;
+  font-weight: 900;
+}
+.cr-button,
+.cr-button.cr-tone-gold,
+.cr-button.cr-tone-stone,
+.cr-badge,
+.cr-panel-header h3,
+.cr-card-name,
+.cr-card-level,
+.cr-card-cost,
+.cr-resource-number,
+.cr-resource-add,
+.cr-progress-text,
+.cr-level-node,
+.cr-dialog h2,
+.cr-tab-list button,
+.cr-toast,
+.cr-check-label,
+.cr-switch-label,
+.cr-tooltip > [role="tooltip"] {
+  color: #fff;
+  font-weight: 900;
+  -webkit-text-stroke: 1.3px var(--cr-text-outline);
+  paint-order: stroke fill;
+  text-shadow: 0 3px 0 var(--cr-text-shadow);
+  letter-spacing: 0.02em;
+}
+.cr-button {
+  min-height: 56px;
+  padding: 11px 24px;
+  gap: 10px;
+  font-size: 24px;
+}
+.cr-button-sm {
+  min-height: 48px;
+  padding: 9px 16px;
+  font-size: 20px;
+}
+.cr-button-lg {
+  min-height: 66px;
+  font-size: 30px;
+  padding: 13px 28px;
+}
+.cr-icon-button {
+  min-width: 48px;
+  width: 48px;
+  padding: 9px;
+}
+.cr-icon-button.cr-button-sm {
+  min-width: 44px;
+  width: 44px;
+  padding: 8px;
+}
+.cr-button svg {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px #1c2c40);
+}
+.cr-badge {
+  padding: 5px 10px;
+  min-height: 34px;
+  font-size: 20px;
+  line-height: 1.2;
+  border-width: 2px;
+  border-radius: 7px;
+  white-space: normal;
+  text-align: center;
+}
+.cr-panel-header {
+  padding: 17px 20px;
+}
+.cr-panel-header h3 {
+  font-size: 26px;
+  line-height: 1.3;
+}
+.cr-panel-body {
+  padding: 23px;
+  font-size: 20px;
+  line-height: 1.65;
+}
+.cr-card {
+  font-size: 20px;
+  line-height: 1.6;
+}
+.cr-dialog h2 {
+  font-size: 29px;
+}
+.cr-dialog-inner > header {
+  padding: 17px 20px;
+}
+.cr-dialog-body {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.7;
+}
+.cr-input {
+  padding: 14px 16px;
+  min-height: 54px;
+  font-size: 20px;
+  font-weight: 900;
+}
+.cr-input::placeholder {
+  font-size: 20px;
+  font-weight: 900;
+}
+.cr-tab-list button {
+  font-size: 20px;
+  padding: 13px 17px;
+  line-height: 1.3;
+}
+.cr-tabs [role="tabpanel"] {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.7;
+}
+.cr-progress {
+  height: 30px;
+  min-width: 70px;
+  border-radius: 8px;
+}
+.cr-progress-text {
+  font-size: 20px;
+  line-height: 1;
+}
+.cr-resource {
+  height: 40px;
+  min-width: 135px;
+  padding-left: 36px;
+  gap: 8px;
+}
+.cr-resource-number {
+  font-size: 24px;
+  line-height: 1;
+}
+.cr-resource-icon {
+  height: 41px;
+  width: 41px;
+  top: -3px;
+  left: -9px;
+}
+.cr-resource-icon svg {
+  width: 29px;
+  height: 29px;
+}
+.cr-resource-add {
+  padding: 3px;
+}
+.cr-avatar {
+  height: 61px;
+  width: 61px;
+}
+.cr-avatar > span {
+  font-size: 20px;
+  min-width: 27px;
+  padding: 3px;
+}
+.cr-divider {
+  font-size: 20px;
+  font-weight: 900;
+}
+.cr-game-card {
+  width: 118px;
+  padding: 7px;
+  border-width: 3px;
+}
+.cr-card-portrait {
+  height: 86px;
+}
+.cr-card-portrait svg {
+  width: 48px;
+  height: 48px;
+}
+.cr-card-name {
+  font-size: 22px;
+  line-height: 1.2;
+  margin-top: 8px;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.cr-card-level {
+  font-size: 20px;
+  line-height: 1.25;
+  margin-top: 6px;
+}
+.cr-card-cost {
+  font-size: 26px;
+  width: 36px;
+  height: 39px;
+}
+.cr-level-node {
+  font-size: 30px;
+  width: 68px;
+  height: 62px;
+}
+.cr-level .cr-stars {
+  top: 65px;
+}
+.cr-level .cr-stars svg {
+  width: 21px;
+  height: 21px;
+}
+.cr-check-label,
+.cr-switch-label {
+  font-size: 20px;
+  line-height: 1.5;
+  gap: 14px;
+}
+.cr-check-box {
+  width: 30px;
+  height: 30px;
+}
+.cr-check-box svg {
+  width: 23px;
+  height: 23px;
+}
+.cr-switch-track {
+  width: 54px;
+  height: 31px;
+  flex-shrink: 0;
+}
+.cr-switch-track span {
+  width: 23px;
+  height: 23px;
+}
+.cr-switch-input:checked + .cr-switch-track span {
+  transform: translateX(23px);
+}
+.cr-slider {
+  height: 30px;
+}
+.cr-toast {
+  font-size: 20px;
+  max-width: 90vw;
+  line-height: 1.5;
+}
+.cr-tooltip > [role="tooltip"] {
+  font-size: 20px;
+  padding: 11px 15px;
+  line-height: 1.3;
+  max-width: 85vw;
+  white-space: normal;
+  width: max-content;
+}
+.cr-display-title {
+  font-family: var(--cr-font-display);
+  font-weight: 900 !important;
+  --cr-title-front: #fff;
+  --cr-title-light: #fff;
+  --cr-title-low: #fff;
+  --cr-title-outline: #142337;
+  --cr-title-depth: #1d3046;
+  gap: 0.015em;
+  letter-spacing: 0.01em;
+}
+.cr-display-glyph {
+  font-weight: 900;
+  text-shadow:
+    0 0.04em 0 var(--cr-title-depth),
+    0 0.08em 0 var(--cr-title-depth),
+    0 0.12em 0 var(--cr-title-outline),
+    0 0.15em 0.04em #0d1d3799;
+}
+.cr-display-glyph:after {
+  background: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: none;
+}
+.cr-title-sm {
+  font-size: 34px;
+}
+.cr-title-md {
+  font-size: 52px;
+}
+.cr-title-lg {
+  font-size: 64px;
+}
+
+/* Filled navigation glyphs stay readable over bright landscapes. */
+.cr-button.cr-icon-button-game {
+  width: 58px;
+  height: 56px;
+  min-height: 56px;
+  padding: 7px;
+  flex-shrink: 0;
+  border: 2px solid #102c48;
+  border-radius: 13px;
+  background: linear-gradient(
+    #88e1ff 0%,
+    #39b6f3 15%,
+    #1686cf 51%,
+    #0963aa 52%,
+    #147ec4 100%
+  );
+  box-shadow:
+    inset 0 3px #c4f5ffb3,
+    inset 0 -3px #06518b,
+    0 5px #0a2b48,
+    0 7px 2px #0c1c3455;
+}
+.cr-icon-button-game .cr-navigation-icon {
+  display: block;
+  width: 34px;
+  height: 34px;
+  overflow: visible;
+  fill: #fff8de;
+  stroke: #163b5b;
+  stroke-width: 1.8px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  filter: drop-shadow(0 3px #0b2b47);
+  transform: none;
+}
+.cr-button.cr-icon-button-game:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+.cr-button.cr-icon-button-game:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow:
+    inset 0 2px #b8ecff99,
+    inset 0 -2px #06518b,
+    0 1px #0a2b48;
+}

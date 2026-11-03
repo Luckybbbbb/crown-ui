@@ -1,0 +1,742 @@
+/* Chest: anticipation -> golden burst -> open reveal. */
+.cr-chest-illustrated {
+  perspective: 700px;
+  transform-origin: 50% 85%;
+  overflow: visible;
+}
+.cr-chest-illustrated > .cr-chest-image {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: 50% 80%;
+  animation: none;
+}
+.cr-chest-closed-image {
+  opacity: 1;
+}
+.cr-chest-open-image {
+  opacity: 0;
+}
+.cr-chest-ambient,
+.cr-chest-rays,
+.cr-chest-keylight,
+.cr-chest-burst,
+.cr-chest-sheen,
+.cr-chest-particle,
+.cr-chest-idle-spark {
+  position: absolute;
+  pointer-events: none;
+  display: block;
+}
+.cr-chest-ambient {
+  inset: -15%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #ffd55b55, transparent 68%);
+  opacity: 0;
+}
+.cr-chest-rays {
+  animation: none;
+  left: -70%;
+  top: -67%;
+  width: 240%;
+  height: 240%;
+  z-index: 1;
+  opacity: 0;
+  background: repeating-conic-gradient(
+    from 3deg,
+    #ffe988bb 0deg 7deg,
+    transparent 7deg 25deg
+  );
+  mask-image: radial-gradient(ellipse, #000 8%, #0009 25%, transparent 65%);
+  -webkit-mask-image: radial-gradient(
+    ellipse,
+    #000 8%,
+    #0009 25%,
+    transparent 65%
+  );
+  transform-origin: 50% 50%;
+}
+.cr-chest-keylight {
+  left: 35%;
+  top: -55%;
+  width: 30%;
+  height: 135%;
+  z-index: 2;
+  background: linear-gradient(transparent, #fff5bcaa 50%, #ffe565);
+  clip-path: polygon(0 0, 100% 0, 62% 100%, 38% 100%);
+  filter: blur(4px);
+  opacity: 0;
+  transform-origin: 50% 100%;
+}
+.cr-chest-burst {
+  inset: -28%;
+  border-radius: 50%;
+  z-index: 5;
+  background: radial-gradient(
+    ellipse,
+    #fffef5 0%,
+    #fff9c5dd 12%,
+    #ffe86c88 30%,
+    transparent 65%
+  );
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+.cr-chest-sheen {
+  inset: 0;
+  z-index: 4;
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    #fffdeb88 48%,
+    transparent 61%
+  );
+  background-size: 350% 100%;
+  mask-image: var(--cr-chest-mask);
+  -webkit-mask-image: var(--cr-chest-mask);
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-mode: alpha;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  opacity: 0.65;
+}
+.cr-chest-particle {
+  left: 50%;
+  top: 48%;
+  z-index: 6;
+  width: 7px;
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(#fffde5, #ffd048);
+  box-shadow: 0 0 10px #ffe977;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+.cr-chest-particle:nth-of-type(3n) {
+  width: 12px;
+  height: 12px;
+  clip-path: polygon(
+    50% 0,
+    62% 36%,
+    100% 50%,
+    62% 64%,
+    50% 100%,
+    38% 64%,
+    0 50%,
+    38% 36%
+  );
+}
+.cr-chest-idle-spark {
+  z-index: 5;
+  width: 13px;
+  height: 13px;
+  background: #fff9ce;
+  clip-path: polygon(
+    50% 0,
+    62% 35%,
+    100% 50%,
+    62% 65%,
+    50% 100%,
+    38% 65%,
+    0 50%,
+    38% 35%
+  );
+  opacity: 0;
+  filter: drop-shadow(0 0 5px #ffe983);
+}
+.cr-chest-state-idle > .cr-chest-closed-image {
+  animation: cr-chest-idle-breathe 2.8s ease-in-out infinite;
+}
+.cr-chest-state-idle > .cr-chest-sheen {
+  transform-origin: 50% 80%;
+  animation:
+    cr-chest-metal-glint 4.8s ease-in-out infinite,
+    cr-chest-idle-breathe 2.8s ease-in-out infinite;
+}
+.cr-chest-state-idle > .cr-chest-idle-spark {
+  animation: cr-chest-twinkle 3.2s ease-in-out infinite;
+}
+.cr-chest-state-opening {
+  animation: cr-chest-anticipate var(--cr-chest-duration, 2200ms) ease-in-out
+    var(--cr-chest-repeat, 1) both;
+}
+.cr-chest-state-opening > .cr-chest-closed-image {
+  animation: cr-chest-close-hide var(--cr-chest-duration, 2200ms) linear
+    var(--cr-chest-repeat, 1) both;
+}
+.cr-chest-state-opening > .cr-chest-open-image {
+  animation: cr-chest-open-reveal var(--cr-chest-duration, 2200ms)
+    cubic-bezier(0.2, 0.85, 0.25, 1) var(--cr-chest-repeat, 1) both;
+}
+.cr-chest-state-opening > .cr-chest-rays {
+  animation: cr-chest-ray-burst var(--cr-chest-duration, 2200ms) ease-out
+    var(--cr-chest-repeat, 1) both;
+}
+.cr-chest-state-opening > .cr-chest-keylight {
+  animation: cr-chest-keylight-burst var(--cr-chest-duration, 2200ms)
+    ease-in-out var(--cr-chest-repeat, 1) both;
+}
+.cr-chest-state-opening > .cr-chest-burst {
+  animation: cr-chest-gold-flash var(--cr-chest-duration, 2200ms) ease-out
+    var(--cr-chest-repeat, 1) both;
+}
+.cr-chest-state-opening > .cr-chest-ambient {
+  animation: cr-chest-ambient-burst var(--cr-chest-duration, 2200ms) ease-out
+    var(--cr-chest-repeat, 1) both;
+}
+.cr-chest-state-opening > .cr-chest-particle {
+  animation: cr-chest-particle-burst var(--cr-chest-duration, 2200ms) ease-out
+    var(--cr-chest-repeat, 1) both;
+  animation-delay: var(--cr-particle-delay, 0ms);
+}
+.cr-chest-state-opening > .cr-chest-sheen {
+  opacity: 0;
+}
+.cr-chest-state-opened > .cr-chest-closed-image {
+  opacity: 0;
+}
+.cr-chest-state-opened > .cr-chest-open-image {
+  opacity: 1;
+  animation: cr-chest-open-float 3.3s ease-in-out infinite;
+}
+.cr-chest-state-opened > .cr-chest-ambient {
+  opacity: 1;
+  animation: cr-chest-open-glow 2s ease-in-out infinite alternate;
+}
+.cr-chest-state-opened > .cr-chest-rays {
+  opacity: 0.13;
+  animation: cr-chest-rays-rotate 24s linear infinite;
+}
+.cr-chest-state-opened > .cr-chest-keylight {
+  opacity: 0.3;
+  animation: cr-chest-open-glow 2.5s ease-in-out infinite alternate;
+}
+.cr-chest-state-opened > .cr-chest-idle-spark {
+  animation: cr-chest-twinkle 2.2s ease-in-out infinite;
+}
+.cr-chest-state-opened > .cr-chest-sheen {
+  transform-origin: 50% 80%;
+  animation: cr-chest-metal-glint 5s ease-in-out infinite,
+    cr-chest-open-float 3.3s ease-in-out infinite;
+}
+@keyframes cr-chest-idle-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.015);
+  }
+}
+@keyframes cr-chest-metal-glint {
+  0%,
+  35% {
+    background-position: 100% 0;
+    opacity: 0;
+  }
+  48% {
+    opacity: 0.65;
+  }
+  65%,
+  100% {
+    background-position: 0 0;
+    opacity: 0;
+  }
+}
+@keyframes cr-chest-twinkle {
+  0%,
+  38%,
+  100% {
+    opacity: 0;
+    transform: scale(0.2) rotate(0);
+  }
+  58% {
+    opacity: 0.9;
+    transform: scale(1.1) rotate(45deg);
+  }
+  76% {
+    opacity: 0;
+    transform: scale(0.5) rotate(90deg);
+  }
+}
+@keyframes cr-chest-anticipate {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: translateY(3px) scale(1.06, 0.92);
+  }
+  17% {
+    transform: translateX(-3px) rotate(-3deg) scale(1.03, 0.96);
+  }
+  23% {
+    transform: translateX(3px) rotate(3deg);
+  }
+  29% {
+    transform: translateX(-5px) rotate(-4deg);
+  }
+  34% {
+    transform: translateX(5px) rotate(4deg);
+  }
+  39% {
+    transform: translateX(-4px) rotate(-3deg) scale(1.04, 0.93);
+  }
+  44% {
+    transform: translateY(-9px) scale(0.96, 1.05);
+  }
+  54% {
+    transform: translateY(-5px) scale(1.08, 0.95);
+  }
+  66% {
+    transform: translateY(2px) scale(0.98, 1.025);
+  }
+  82%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes cr-chest-close-hide {
+  0%,
+  43% {
+    opacity: 1;
+  }
+  48%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes cr-chest-open-reveal {
+  0%,
+  43% {
+    opacity: 0;
+    transform: scale(0.75, 0.65) translateY(20px);
+  }
+  48% {
+    opacity: 1;
+    transform: scale(0.85, 0.8) translateY(-6px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.07, 1.02) translateY(-4px);
+  }
+  73% {
+    opacity: 1;
+    transform: scale(0.99, 1.02);
+  }
+  88%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes cr-chest-ray-burst {
+  0%,
+  35% {
+    opacity: 0;
+    transform: rotate(-15deg) scale(0.35);
+  }
+  45% {
+    opacity: 0.9;
+    transform: rotate(0) scale(0.85);
+  }
+  65% {
+    opacity: 0.36;
+    transform: rotate(12deg) scale(1.15);
+  }
+  100% {
+    opacity: 0.12;
+    transform: rotate(25deg) scale(1);
+  }
+}
+@keyframes cr-chest-keylight-burst {
+  0%,
+  24% {
+    opacity: 0;
+    transform: scaleX(0.2) scaleY(0.2);
+  }
+  39% {
+    opacity: 0.75;
+    transform: scaleX(0.55) scaleY(0.8);
+  }
+  47% {
+    opacity: 1;
+    transform: scaleX(1.7) scaleY(1.2);
+  }
+  75%,
+  100% {
+    opacity: 0.3;
+    transform: scaleX(1) scaleY(1);
+  }
+}
+@keyframes cr-chest-gold-flash {
+  0%,
+  38% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  51% {
+    opacity: 0.85;
+    transform: scale(1.35);
+  }
+  67%,
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+@keyframes cr-chest-ambient-burst {
+  0%,
+  23% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+  43% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+@keyframes cr-chest-particle-burst {
+  0%,
+  39% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  46% {
+    opacity: 1;
+    transform: translate(
+        calc(-50% + var(--cr-particle-x) * 0.25),
+        calc(-50% + var(--cr-particle-y) * 0.25)
+      )
+      scale(1.1) rotate(var(--cr-particle-rotation));
+  }
+  77% {
+    opacity: 0.9;
+    transform: translate(
+        calc(-50% + var(--cr-particle-x)),
+        calc(-50% + var(--cr-particle-y))
+      )
+      scale(0.8) rotate(calc(var(--cr-particle-rotation) + 160deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+        calc(-50% + var(--cr-particle-x) * 1.2),
+        calc(-50% + var(--cr-particle-y) + 35px)
+      )
+      scale(0.1) rotate(calc(var(--cr-particle-rotation) + 250deg));
+  }
+}
+@keyframes cr-chest-open-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes cr-chest-open-glow {
+  to {
+    opacity: 0.45;
+    filter: brightness(1.2);
+  }
+}
+@keyframes cr-chest-rays-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Three sockets remain underneath. Gold stars slam, squash, stretch and settle. */
+.cr-stars {
+  --cr-star-size: 48px;
+  gap: 10px;
+  isolation: isolate;
+  overflow: visible;
+}
+.cr-stars > .cr-star-slot {
+  display: block;
+  position: relative;
+  width: var(--cr-star-size);
+  height: var(--cr-star-size);
+  flex-shrink: 0;
+  transform: none;
+  filter: none;
+  animation: none;
+}
+.cr-star-socket,
+.cr-star-fill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: 50% 65%;
+}
+.cr-star-socket {
+  z-index: 0;
+  filter: drop-shadow(0 2px 1px #0b182a66);
+}
+.cr-star-socket > .cr-illustration,
+.cr-star-fill > .cr-illustration {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: none;
+}
+.cr-star-socket > svg,
+.cr-star-fill > svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1.5;
+}
+.cr-star-socket > svg {
+  fill: #273b53 !important;
+  color: #7c91a3;
+}
+.cr-star-fill > svg {
+  fill: #ffda5d !important;
+  color: #a56c22;
+}
+.cr-star-fill {
+  z-index: 3;
+  filter: drop-shadow(0 3px 0 #8f5d2288);
+}
+.cr-star-fill > .cr-illustration {
+  width: 94%;
+  height: 94%;
+  margin: 3%;
+}
+.cr-stars > .cr-star-slot:nth-child(2) {
+  transform: none;
+}
+.cr-stars-animated:has(.cr-star-fill) {
+  animation: cr-star-row-kick 2200ms linear both;
+}
+@keyframes cr-star-row-kick {
+  0%,
+  28%,
+  34%,
+  49%,
+  55%,
+  69%,
+  76%,
+  100% {
+    transform: translateY(0);
+  }
+  30%,
+  51%,
+  71% {
+    transform: translateY(3px);
+  }
+  32%,
+  53%,
+  73% {
+    transform: translateY(-1px);
+  }
+}
+.cr-star-impact-ring,
+.cr-star-impact-flash,
+.cr-star-spark {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+.cr-star-impact-ring {
+  inset: 3%;
+  border: 3px solid #fff1ad;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 10px #ffe875;
+}
+.cr-star-impact-flash {
+  inset: -30%;
+  z-index: 2;
+  background: radial-gradient(#fff9cfdd, #ffd95077 25%, transparent 63%);
+  border-radius: 50%;
+}
+.cr-star-spark {
+  left: 50%;
+  top: 55%;
+  width: 7px;
+  height: 10px;
+  background: #ffe895;
+  box-shadow: 0 0 7px #ffda62;
+  z-index: 4;
+  border-radius: 1px;
+}
+.cr-stars-animated > .cr-star-slot > .cr-star-fill {
+  animation: cr-star-slam var(--cr-star-duration, 760ms)
+    var(--cr-star-delay, 350ms) linear both;
+}
+.cr-stars-animated > .cr-star-filled > .cr-star-socket {
+  animation: cr-star-socket-impact var(--cr-star-duration, 760ms)
+    var(--cr-star-delay, 350ms) linear both;
+}
+.cr-stars-animated > .cr-star-slot > .cr-star-impact-ring {
+  animation: cr-star-ring var(--cr-star-duration, 760ms)
+    var(--cr-star-delay, 350ms) ease-out both;
+}
+.cr-stars-animated > .cr-star-slot > .cr-star-impact-flash {
+  animation: cr-star-flash var(--cr-star-duration, 760ms)
+    var(--cr-star-delay, 350ms) ease-out both;
+}
+.cr-stars-animated > .cr-star-slot > .cr-star-spark {
+  animation: cr-star-debris var(--cr-star-duration, 760ms)
+    var(--cr-star-delay, 350ms) ease-out both;
+}
+@keyframes cr-star-slam {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) scale(2.7, 2.4) rotate(-18deg);
+  }
+  22% {
+    opacity: 1;
+    transform: translateY(-52px) scale(1.65, 1.75) rotate(-9deg);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(6px) scale(1.25, 0.65) rotate(3deg);
+  }
+  53% {
+    transform: translateY(-13px) scale(0.85, 1.18) rotate(-3deg);
+  }
+  68% {
+    transform: translateY(4px) scale(1.1, 0.9) rotate(1deg);
+  }
+  82% {
+    transform: translateY(-3px) scale(0.97, 1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+@keyframes cr-star-socket-impact {
+  0%,
+  37% {
+    transform: translateY(0);
+  }
+  42% {
+    transform: translateY(4px) scale(1.04, 0.95);
+  }
+  47% {
+    transform: translateY(-2px);
+  }
+  55% {
+    transform: translateY(1px);
+  }
+  70%,
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes cr-star-ring {
+  0%,
+  37% {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+  42% {
+    opacity: 1;
+    transform: scale(0.7);
+  }
+  68% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+@keyframes cr-star-flash {
+  0%,
+  37% {
+    opacity: 0;
+    transform: scale(0.25);
+  }
+  41% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  59%,
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+@keyframes cr-star-debris {
+  0%,
+  38% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+  44% {
+    opacity: 1;
+    transform: translate(
+        calc(-50% + var(--cr-spark-x) * 0.2),
+        calc(-50% + var(--cr-spark-y) * 0.2)
+      )
+      scale(1);
+  }
+  75% {
+    opacity: 0;
+    transform: translate(
+        calc(-50% + var(--cr-spark-x)),
+        calc(-50% + var(--cr-spark-y))
+      )
+      rotate(150deg) scale(0.25);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.cr-level .cr-stars {
+  --cr-star-size: 22px;
+  gap: 0;
+}
+.cr-stars:not(.cr-stars-animated) .cr-star-fill {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cr-star-fill {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cr-chest-state-opening > .cr-chest-open-image {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cr-chest-state-opening > .cr-chest-closed-image {
+    opacity: 0 !important;
+  }
+}
+[data-reduced-motion="true"] .cr-star-fill {
+  opacity: 1 !important;
+  transform: none !important;
+}
+[data-reduced-motion="true"] .cr-chest-state-opening > .cr-chest-open-image {
+  opacity: 1 !important;
+  transform: none !important;
+}
+[data-reduced-motion="true"] .cr-chest-state-opening > .cr-chest-closed-image {
+  opacity: 0 !important;
+}

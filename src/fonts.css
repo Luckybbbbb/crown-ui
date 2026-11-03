@@ -1,0 +1,22 @@
+/* Optional self-hosted display faces. See fonts/*-OFL.txt and THIRD_PARTY_NOTICES.md. */
+@font-face {
+  font-family: "Crown Display CJK";
+  src: url("./fonts/zcool-kuaile.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crown Display Latin";
+  src: url("./fonts/crown-latin-display.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Crown Rounded SC";
+  src: url("./fonts/crown-rounded-sc.woff2") format("woff2");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
