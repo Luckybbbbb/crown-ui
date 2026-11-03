@@ -2,9 +2,11 @@
 
 [![CI](https://github.com/Luckybbbbb/crown-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/Luckybbbbb/crown-ui/actions/workflows/ci.yml)
 
-[GitHub 仓库](https://github.com/Luckybbbbb/crown-ui) · [v0.1.0 下载](https://github.com/Luckybbbbb/crown-ui/releases/tag/v0.1.0) · [商用授权清单](THIRD_PARTY_NOTICES.md)
+[在线预览](https://luckybbbbb.github.io/crown-ui/) · [GitHub 仓库](https://github.com/Luckybbbbb/crown-ui) · [v0.1.0 下载](https://github.com/Luckybbbbb/crown-ui/releases/tag/v0.1.0) · [商用授权清单](THIRD_PARTY_NOTICES.md)
 
 原创欧式卡通 React UI 组件库。厚倒角、蓝金配色、金属描边、羊皮纸面板与有触感的界面动效。
+
+直接体验：[开始界面](https://luckybbbbb.github.io/crown-ui/#/examples/start) · [关卡选择](https://luckybbbbb.github.io/crown-ui/#/examples/levels) · [玩法主界面](https://luckybbbbb.github.io/crown-ui/#/examples/battle) · [结算界面](https://luckybbbbb.github.io/crown-ui/#/examples/result) · [宝箱与星级动效](https://luckybbbbb.github.io/crown-ui/#/motion)。无需登录或安装。
 
 组织模式参考 [warcraftcn-ui](https://github.com/TheOrcDev/warcraftcn-ui) 的源码 registry，以及 [animal-island-ui](https://github.com/guokaigdg/animal-island-ui) 的 React 组件包、独立样式和文档示例。组件与视觉在此项目中重新制作。项目采用独立名称，与 Supercell 无关联。
 
@@ -53,6 +55,8 @@ npm run build       # ESM / CJS / CSS / TypeScript 声明
 npm run build:demo  # 组件包、registry 和静态文档站
 npm run check      # 类型检查、测试和两种构建
 ```
+
+推送到 `main` 后，GitHub Actions 会先完成检查，再将 `demo-dist/` 部署到 GitHub Pages；也可在 Actions 中手动运行 CI。部署配置见 `docs/github-pages.md`。
 
 组件包尚未发布 npm。从 [GitHub Release](https://github.com/Luckybbbbb/crown-ui/releases/tag/v0.1.0) 下载 `crown-ui-react-0.1.0.tgz` 后可本地安装；同一发行版提供可自行托管的静态文档站 ZIP。`build:demo` 也会生成 `public/downloads/crown-ui-react-0.1.0.tgz`，并复制到静态站下载目录。
 
